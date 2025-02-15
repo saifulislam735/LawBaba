@@ -148,13 +148,13 @@ const AppContent = () => {
                           <dt className="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
                             {t("satisfiedClients")}
                           </dt>
-                          <dd className="order-1 text-5xl font-extrabold text-blue-600">100K+</dd>
+                          <dd className="order-1 text-5xl font-extrabold text-blue-600">10K+</dd>
                         </div>
                         <div className="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
                           <dt className="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
                             {t("expertLawyers")}
                           </dt>
-                          <dd className="order-1 text-5xl font-extrabold text-blue-600">5K+</dd>
+                          <dd className="order-1 text-5xl font-extrabold text-blue-600">1K+</dd>
                         </div>
                         <div className="flex flex-col border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l">
                           <dt className="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
@@ -386,13 +386,13 @@ const AppContent = () => {
 
             {/* CTA Section */}
             <div className="bg-blue-600 mb-24">
-              <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+              <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 flex flex-col lg:flex-row lg:items-center lg:justify-between text-center lg:text-left">
                 <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
                   <span className="block">{t("readyToGetStarted")}</span>
                   <span className="block text-blue-200">{t("joinOurPlatformToday")}</span>
                 </h2>
-                <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
-                  <div className="inline-flex rounded-md shadow">
+                <div className="mt-8 flex flex-col sm:flex-row justify-center lg:mt-0 lg:flex-shrink-0">
+                  <div className="inline-flex rounded-md shadow mb-4 sm:mb-0 sm:mr-3">
                     <Link
                       to="/client-signup"
                       className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50 transition duration-150 ease-in-out"
@@ -400,7 +400,7 @@ const AppContent = () => {
                       {t("getStarted")}
                     </Link>
                   </div>
-                  <div className="ml-3 inline-flex rounded-md shadow">
+                  <div className="inline-flex rounded-md shadow">
                     <Link
                       to="/lawyer-signup"
                       className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-800 hover:bg-blue-700 transition duration-150 ease-in-out"
@@ -411,6 +411,7 @@ const AppContent = () => {
                 </div>
               </div>
             </div>
+
           </Layout>
         }
       />

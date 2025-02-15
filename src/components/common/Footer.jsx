@@ -12,12 +12,14 @@ const Footer = () => {
           {/* Logo & Tagline Section */}
           <div className="space-y-8 xl:col-span-1 flex flex-col items-center">
             <div className="flex items-center space-x-2">
-              <img
+              {/* <img
                 src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=128&h=128&fit=crop&auto=format"
                 alt="Logo"
                 className="h-12 w-12 rounded-lg shadow-md"
-              />
-              <span className="text-2xl font-semibold text-white">Your Brand</span>
+              /> */}
+              <Link to={'/'}>
+                <h1 className='text-3xl md:text-4xl font-bold text-white'>Lawবাবা</h1>
+              </Link>
             </div>
             <p className="text-gray-400 text-base text-center leading-relaxed max-w-xs">
               {t('footerTagline')}

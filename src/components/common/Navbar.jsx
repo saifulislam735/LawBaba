@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useTranslation } from '../../hooks/useTranslation';
@@ -9,6 +9,7 @@ const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuth();
   const { language, changeLanguage } = useLanguage();
   const { t } = useTranslation();
+  const location = useLocation();
 
   const navLinks = [
     { name: t('home'), path: '/' },
@@ -32,186 +33,124 @@ const Navbar = () => {
     return user.role === 'lawyer' ? lawyerLinks : clientLinks;
   };
 
-  const isActive = (path) => window.location.pathname === path;
+  const isActive = (path) => location.pathname === path;
 
   return (
     <nav className="bg-white shadow-sm fixed w-full z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            <Link to="/" className="flex-shrink-0 flex items-center">
-              <img className="h-8 w-auto" src="/logo.png" alt="Logo" />
-            </Link>
-            <div className="hidden md:ml-6 md:flex md:space-x-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-md ${
-                    isActive(link.path)
-                      ? 'text-blue-600 bg-blue-50'
-                      : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+        <div className="flex justify-between h-16 items-center">
+          <Link to="/" className="flex items-center">
+            {/* <img className="h-8 w-auto" src="/logo.png" alt="Logo" /> */}
+            <h1 className='text-3xl md:text-4xl font-bold text-gray-950'>Lawবাবা</h1>
+          </Link>
+
+          <div className="hidden md:flex space-x-4">
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${isActive(link.path) ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
                   }`}
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </div>
+              >
+                {link.name}
+              </Link>
+            ))}
           </div>
 
-          <div className="flex items-center space-x-4">
-            {/* Language Selection */}
-            <div className="relative inline-block text-left">
-              <div className="flex items-center space-x-2">
-                <button
-                  onClick={() => changeLanguage('en')}
-                  className={`px-3 py-1 text-sm rounded-md ${
-                    language === 'en' ? 'bg-blue-100 text-blue-600' : 'text-gray-700 hover:bg-gray-100'
-                  }`}
-                >
-                  {t('english')}
-                </button>
-                <button
-                  onClick={() => changeLanguage('bn')}
-                  className={`px-3 py-1 text-sm rounded-md ${
-                    language === 'bn' ? 'bg-blue-100 text-blue-600' : 'text-gray-700 hover:bg-gray-100'
-                  }`}
-                >
-                  {t('bangla')}
-                </button>
-              </div>
-            </div>
+          <div className="hidden md:flex items-center space-x-4">
+            <button
+              onClick={() => changeLanguage('en')}
+              className={`px-3 py-1 text-sm rounded-md transition-all ${language === 'en' ? 'bg-blue-100 text-blue-600' : 'text-gray-700 hover:bg-gray-100'
+                }`}
+            >
+              {t('english')}
+            </button>
+            <button
+              onClick={() => changeLanguage('bn')}
+              className={`px-3 py-1 text-sm rounded-md transition-all ${language === 'bn' ? 'bg-blue-100 text-blue-600' : 'text-gray-700 hover:bg-gray-100'
+                }`}
+            >
+              {t('bangla')}
+            </button>
 
             {isAuthenticated ? (
-              <div className="flex items-center space-x-4">
+              <>
                 {getAuthLinks().map((link) => (
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`px-3 py-2 rounded-md text-sm font-medium ${
-                      isActive(link.path)
-                        ? 'text-blue-600 bg-blue-50'
-                        : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
-                    }`}
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all ${isActive(link.path) ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+                      }`}
                   >
                     {link.name}
                   </Link>
                 ))}
                 <button
                   onClick={logout}
-                  className="text-gray-900 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-gray-900 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-all"
                 >
                   {t('logout')}
                 </button>
-              </div>
+              </>
             ) : (
-              <div className="flex items-center space-x-4">
+              <>
                 <Link
                   to="/client-login"
-                  className="text-gray-900 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-gray-900 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-all"
                 >
                   {t('login')}
                 </Link>
                 <Link
                   to="/client-signup"
-                  className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium"
+                  className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium transition-all"
                 >
                   {t('signup')}
                 </Link>
-              </div>
+              </>
             )}
           </div>
 
-          <div className="flex items-center md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-            >
-              <svg
-                className={`${isOpen ? 'hidden' : 'block'} h-6 w-6`}
-                stroke="currentColor"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-              <svg
-                className={`${isOpen ? 'block' : 'hidden'} h-6 w-6`}
-                stroke="currentColor"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+          >
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              {isOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
-      <div className={`${isOpen ? 'block' : 'hidden'} md:hidden`}>
-        <div className="px-2 pt-2 pb-3 space-y-1">
-          {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`block px-3 py-2 rounded-md text-base font-medium ${
-                isActive(link.path)
-                  ? 'text-blue-600 bg-blue-50'
-                  : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
-              }`}
-            >
-              {link.name}
+      <div className={`${isOpen ? 'block' : 'hidden'} md:hidden bg-white shadow-md px-4 pb-4 space-y-2`}>
+        {navLinks.map((link) => (
+          <Link
+            key={link.path}
+            to={link.path}
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100"
+            onClick={() => setIsOpen(false)}
+          >
+            {link.name}
+          </Link>
+        ))}
+
+        {!isAuthenticated && (
+          <>
+            <Link to="/client-login" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100" onClick={() => setIsOpen(false)}>
+              {t('login')}
             </Link>
-          ))}
-          {isAuthenticated ? (
-            <>
-              {getAuthLinks().map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`block px-3 py-2 rounded-md text-base font-medium ${
-                    isActive(link.path)
-                      ? 'text-blue-600 bg-blue-50'
-                      : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              ))}
-              <button
-                className="w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-                onClick={logout}
-              >
-                {t('logout')}
-              </button>
-            </>
-          ) : (
-            <>
-              <Link
-                to="/client-login"
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-              >
-                {t('login')}
-              </Link>
-              <Link
-                to="/client-signup"
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-              >
-                {t('signup')}
-              </Link>
-            </>
-          )}
+            <Link to="/client-signup" className="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700" onClick={() => setIsOpen(false)}>
+              {t('signup')}
+            </Link>
+          </>
+        )}
+
+        <div className="flex justify-center space-x-2">
+          <button onClick={() => changeLanguage('en')} className={`px-3 py-1 text-sm rounded-md ${language === 'en' ? 'bg-blue-100 text-blue-600' : 'text-gray-700 hover:bg-gray-100'}`}>{t('english')}</button>
+          <button onClick={() => changeLanguage('bn')} className={`px-3 py-1 text-sm rounded-md ${language === 'bn' ? 'bg-blue-100 text-blue-600' : 'text-gray-700 hover:bg-gray-100'}`}>{t('bangla')}</button>
         </div>
       </div>
     </nav>
