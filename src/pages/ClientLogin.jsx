@@ -18,7 +18,7 @@ const ClientLogin = () => {
       setError('');
       setLoading(true);
       await login(email, password);
-      navigate('/');
+      navigate('/'); // Will be redirected based on user role
     } catch (err) {
       console.log(err)
       setError(t('invalidCredentials'));
@@ -87,18 +87,6 @@ const ClientLogin = () => {
             </div>
 
             <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                  {t('rememberMe')}
-                </label>
-              </div>
-
               <div className="text-sm">
                 <Link to="/forgot-password" className="font-medium text-blue-600 hover:text-blue-500">
                   {t('forgotPassword')}
@@ -116,43 +104,9 @@ const ClientLogin = () => {
               </button>
             </div>
           </form>
-
-          <div className="mt-6">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300" />
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">{t('orContinueWith')}</span>
-              </div>
-            </div>
-
-            <div className="mt-6 grid grid-cols-2 gap-3">
-              <button
-                type="button"
-                className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-              >
-                <span className="sr-only">Google</span>
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12.545,12.151L12.545,12.151c0,1.054,0.855,1.909,1.909,1.909h3.536c-0.354,1.609-1.359,3.025-2.727,3.927C13.89,19.144,12.077,19.608,10,19.608c-3.314,0-6-2.686-6-6s2.686-6,6-6c1.523,0,2.934,0.561,4.028,1.5l2.891-2.891C15.445,4.743,13.096,4,10,4c-5.523,0-10,4.477-10,10s4.477,10,10,10c2.628,0,5.043-0.952,6.922-2.537C19.685,19.001,22,15.837,22,12.151v-1.909h-9.455V12.151z" />
-                </svg>
-              </button>
-
-              <button
-                type="button"
-                className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-              >
-                <span className="sr-only">Facebook</span>
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
-                </svg>
-              </button>
-            </div>
-          </div>
         </div>
       </div>
 
-      {/* Add the link/button to go to Lawyer login */}
       <div className="text-center mt-4">
         <p className="text-sm text-gray-600">
           <Link to="/lawyer-login" className="font-medium text-blue-600 hover:text-blue-500">

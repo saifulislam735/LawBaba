@@ -10,22 +10,23 @@ const mockUsers = {
     email: 'client@test.com',
     password: 'client123',
     role: 'client',
-    firstName: 'John',
-    lastName: 'Doe',
+    name: 'কামরুল ইসলাম',
+    lastName: 'খান',
     id: 'client1',
   },
   lawyer: {
     email: 'lawyer@test.com',
     password: 'lawyer123',
     role: 'lawyer',
-    firstName: 'Sarah',
-    lastName: 'Wilson',
+    firstName: 'মো. সোহেল',
+    lastName: 'রানা',
     id: 'lawyer1',
-    specialization: 'Corporate Law',
+    specialization: 'ক্রিমিনাল আইন',
     barNumber: 'BAR123456',
-    experience: '10 years',
+    experience: '12 বছর',
   },
 };
+
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -51,11 +52,19 @@ export const AuthProvider = ({ children }) => {
 
   const handleRoleBasedRedirect = (userData) => {
     const currentPath = window.location.pathname;
-    if (currentPath === '/login' || currentPath === '/signup') {
+
+    // Redirection logic based on the login/signup path
+    if (currentPath === '/client-login' || currentPath === '/client-signup') {
+      if (userData.role === 'client') {
+        navigate('/lawyers'); // Redirect to client dashboard or lawyers' list
+      } else {
+        navigate('/lawyer-login'); // If lawyer logged in from client login/signup
+      }
+    } else if (currentPath === '/lawyer-login' || currentPath === '/lawyer-signup') {
       if (userData.role === 'lawyer') {
-        navigate('/dashboard');
-      } else if (userData.role === 'client') {
-        navigate('/lawyers');
+        navigate('/dashboard'); // Redirect to lawyer dashboard
+      } else {
+        navigate('/client-login'); // If client logged in from lawyer login/signup
       }
     }
   };
@@ -63,17 +72,26 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       setError(null);
-      const response = await authService.login(email, password);
-      const { token, user: userData } = response;
-      
-      localStorage.setItem('auth_token', token);
-      localStorage.setItem('user_data', JSON.stringify(userData));
-      
-      setUser(userData);
-      handleRoleBasedRedirect(userData);
-      return userData;
+
+      // Check for mock users based on email and password
+      let userData = null;
+      if (email === mockUsers.client.email && password === mockUsers.client.password) {
+        userData = mockUsers.client;
+      } else if (email === mockUsers.lawyer.email && password === mockUsers.lawyer.password) {
+        userData = mockUsers.lawyer;
+      }
+
+      if (userData) {
+        // Simulate successful login
+        localStorage.setItem('user_data', JSON.stringify(userData));
+        setUser(userData);
+        handleRoleBasedRedirect(userData); // Redirect based on role (client or lawyer)
+        return userData;
+      } else {
+        throw new Error('Invalid credentials');
+      }
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed');
+      setError('Invalid credentials');
       throw err;
     }
   };
@@ -82,11 +100,11 @@ export const AuthProvider = ({ children }) => {
     try {
       setError(null);
       const response = await authService.register(userData);
-      const { token, user: newUser } = response;
-      
+      const { token, newUser } = response;
+
       localStorage.setItem('auth_token', token);
       localStorage.setItem('user_data', JSON.stringify(newUser));
-      
+
       setUser(newUser);
       handleRoleBasedRedirect(newUser);
       return newUser;

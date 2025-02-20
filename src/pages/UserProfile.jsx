@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAuth } from '../contexts/AuthContext';
 
 const UserProfile = () => {
@@ -33,11 +32,11 @@ const UserProfile = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-600">Phone</label>
-                  <p className="mt-1 text-gray-900">+1 (555) 123-4567</p>
+                  <p className="mt-1 text-gray-900">+8801XXXXXXXXX</p>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-600">Location</label>
-                  <p className="mt-1 text-gray-900">New York, USA</p>
+                  <p className="mt-1 text-gray-900">Dhaka, Bangladesh</p>
                 </div>
               </div>
             </div>
@@ -50,7 +49,7 @@ const UserProfile = () => {
                   <div className="flex justify-between items-start">
                     <div>
                       <h3 className="font-medium">Consultation Scheduled</h3>
-                      <p className="text-sm text-gray-600">With Sarah Wilson</p>
+                      <p className="text-sm text-gray-600">With Sohel Rana</p>
                     </div>
                     <span className="text-sm text-gray-500">2 days ago</span>
                   </div>
@@ -59,7 +58,7 @@ const UserProfile = () => {
                   <div className="flex justify-between items-start">
                     <div>
                       <h3 className="font-medium">Message Sent</h3>
-                      <p className="text-sm text-gray-600">To John Smith</p>
+                      <p className="text-sm text-gray-600">To Farjana Parvin</p>
                     </div>
                     <span className="text-sm text-gray-500">5 days ago</span>
                   </div>
@@ -74,8 +73,8 @@ const UserProfile = () => {
                 <div className="border rounded-lg p-4">
                   <div className="flex justify-between">
                     <div>
-                      <h3 className="font-medium">Sarah Wilson</h3>
-                      <p className="text-sm text-gray-600">Corporate Law</p>
+                      <h3 className="font-medium">Sohel Rana</h3>
+                      <p className="text-sm text-gray-600">Criminal Law</p>
                     </div>
                     <div className="text-right">
                       <p className="font-medium">March 1, 2025</p>

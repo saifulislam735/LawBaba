@@ -24,8 +24,6 @@ const Navbar = () => {
 
   const lawyerLinks = [
     { name: t('dashboard'), path: '/dashboard' },
-    { name: t('messages'), path: '/messages' },
-    { name: t('profile'), path: '/profile' },
   ];
 
   const getAuthLinks = () => {
@@ -138,12 +136,8 @@ const Navbar = () => {
 
         {!isAuthenticated && (
           <>
-            <Link to="/client-login" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100" onClick={() => setIsOpen(false)}>
-              {t('login')}
-            </Link>
-            <Link to="/client-signup" className="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700" onClick={() => setIsOpen(false)}>
-              {t('signup')}
-            </Link>
+            <Link to="/client-login" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100" onClick={() => setIsOpen(false)}>{t('login')}</Link>
+            <Link to="/client-signup" className="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700" onClick={() => setIsOpen(false)}>{t('signup')}</Link>
           </>
         )}
 

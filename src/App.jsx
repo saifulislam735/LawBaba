@@ -15,6 +15,7 @@ import { NotificationProvider } from "./contexts/NotificationContext"
 import { AuthProvider, useAuth } from "./contexts/AuthContext"
 import { LanguageProvider } from "./contexts/LanguageContext"
 import { useTranslation } from "./hooks/useTranslation"
+import Dashboard from "./pages/Dashboard"
 // import ScrollToTop from "./components/ScrollToTop/ScrollToTop"
 
 // Protected Route component
@@ -483,14 +484,7 @@ const AppContent = () => {
         path="/dashboard"
         element={
           <ProtectedRoute allowedRoles={["lawyer"]}>
-            <Layout>
-              <div className="py-12">
-                <div className="bg-white rounded-xl shadow-sm p-8">
-                  <h1 className="text-3xl font-bold mb-8">{t("dashboard")}</h1>
-                  {/* Dashboard content */}
-                </div>
-              </div>
-            </Layout>
+            <Dashboard />
           </ProtectedRoute>
         }
       />

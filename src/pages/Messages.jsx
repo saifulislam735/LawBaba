@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
+// import { useAuth } from '../contexts/AuthContext';
 
 export default function Messages() {
   const { id } = useParams();
-  const { user } = useAuth();
+  // const { user } = useAuth();
   const [selectedChat, setSelectedChat] = useState(null);
   const [message, setMessage] = useState('');
 
@@ -12,18 +12,18 @@ export default function Messages() {
   const conversations = [
     {
       id: '1',
-      name: 'Sarah Wilson',
-      role: 'Lawyer',
-      lastMessage: 'Thank you for your inquiry about the contract review.',
-      time: '2 hours ago',
+      name: 'মো. সোহেল রানা',
+      role: 'ক্রিমিনাল আইনজীবী',
+      lastMessage: 'চুক্তি পর্যালোচনার জন্য আপনার অনুসন্ধান করার জন্য ধন্যবাদ।',
+      time: '2 ঘণ্টা আগে',
       unread: 2,
     },
     {
       id: '2',
-      name: 'John Smith',
-      role: 'Lawyer',
-      lastMessage: 'I can help you with your case. Let me know when...',
-      time: '1 day ago',
+      name: 'ফারজানা পারভীন',
+      role: 'পারিবারিক আইনজীবী',
+      lastMessage: 'আমি আপনার কেসে সহায়তা করতে পারি। আমাকে জানালে আপনি কখন ফ্রি থাকবেন...',
+      time: '1 দিন আগে',
       unread: 0,
     },
   ];
@@ -33,19 +33,19 @@ export default function Messages() {
     {
       id: 1,
       senderId: 1,
-      text: 'Hello! How can I help you today?',
+      text: 'হ্যালো! আমি কীভাবে আপনাকে সাহায্য করতে পারি?',
       timestamp: '10:00 AM',
     },
     {
       id: 2,
       senderId: 'me',
-      text: 'Hi, I need help with a contract review. Would you be available for a consultation?',
+      text: 'হাই, আমাকে একটি চুক্তি পর্যালোচনার জন্য সাহায্য করতে হবে। আপনি কি পরামর্শের জন্য উপলব্ধ থাকবেন?',
       timestamp: '10:05 AM',
     },
     {
       id: 3,
       senderId: 1,
-      text: 'Of course! I specialize in contract law. I have some availability next week. Would you like to schedule a consultation?',
+      text: 'অবশ্যই! আমি চুক্তি আইনে বিশেষজ্ঞ। আমার পরবর্তী সপ্তাহে কিছু সময় ফ্রি আছে। আপনি কি একটি পরামর্শের জন্য সময় নির্ধারণ করতে চান?',
       timestamp: '10:10 AM',
     },
   ];
@@ -80,9 +80,8 @@ export default function Messages() {
                 <div
                   key={chat.id}
                   onClick={() => setSelectedChat(chat)}
-                  className={`p-4 border-b cursor-pointer hover:bg-gray-50 ${
-                    selectedChat?.id === chat.id ? 'bg-blue-50' : ''
-                  }`}
+                  className={`p-4 border-b cursor-pointer hover:bg-gray-50 ${selectedChat?.id === chat.id ? 'bg-blue-50' : ''
+                    }`}
                 >
                   <div className="flex justify-between items-start">
                     <div>
@@ -131,17 +130,15 @@ export default function Messages() {
                       className={`flex ${msg.senderId === 'me' ? 'justify-end' : 'justify-start'}`}
                     >
                       <div
-                        className={`max-w-[70%] rounded-lg p-3 ${
-                          msg.senderId === 'me'
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-gray-100 text-gray-900'
-                        }`}
+                        className={`max-w-[70%] rounded-lg p-3 ${msg.senderId === 'me'
+                          ? 'bg-blue-600 text-white'
+                          : 'bg-gray-100 text-gray-900'
+                          }`}
                       >
                         <p>{msg.text}</p>
                         <p
-                          className={`text-xs mt-1 ${
-                            msg.senderId === 'me' ? 'text-blue-100' : 'text-gray-500'
-                          }`}
+                          className={`text-xs mt-1 ${msg.senderId === 'me' ? 'text-blue-100' : 'text-gray-500'
+                            }`}
                         >
                           {msg.timestamp}
                         </p>
