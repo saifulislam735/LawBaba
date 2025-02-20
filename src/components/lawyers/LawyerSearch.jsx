@@ -75,9 +75,9 @@ const LawyerSearch = ({ onSearch }) => {
                 onChange={(e) => setFilters({ ...filters, priceRange: e.target.value })}
               >
                 <option value="">Price Range</option>
-                <option value="low">$50-100/hr</option>
-                <option value="medium">$100-200/hr</option>
-                <option value="high">$200+/hr</option>
+                <option value="low">500-600</option>
+                <option value="medium">600-800</option>
+                <option value="high">800+</option>
               </select>
             </div>
 
