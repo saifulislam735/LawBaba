@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useTranslation } from '../hooks/useTranslation';
 import { AiOutlineHome } from 'react-icons/ai';
-
+import logo from "../../public/logo drk.png"
 export default function ClientSignup() {
   const { t } = useTranslation();
   const [formData, setFormData] = useState({
@@ -57,7 +57,7 @@ export default function ClientSignup() {
             <AiOutlineHome className="text-xl" /> {t('home')}
           </button>
           <Link to='/'>
-            <img src="../../public/logo drk.png" className='h-24 ' alt="" />
+            <img src={logo} className='h-24 ' alt="" />
           </Link>
         </div>
         <div>

@@ -5,6 +5,7 @@ import { useAuth } from "../../contexts/AuthContext"
 import { useLanguage } from "../../contexts/LanguageContext"
 import { useTranslation } from "../../hooks/useTranslation"
 import { ProfileButton } from "./navbar-profile"
+import logo from '../../../public/logo drk.png'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -38,7 +39,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <Link to="/" className="flex items-center">
-            <img className="h-20 w-auto" src="../../../public/logo drk.png" alt="Logo" />
+            <img className="h-20 w-auto" src={logo} alt="Logo" />
           </Link>
 
           <div className="hidden md:flex space-x-4">
@@ -46,11 +47,10 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
-                  isActive(link.path)
+                className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${isActive(link.path)
                     ? "text-blue-600 bg-blue-50"
                     : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-                }`}
+                  }`}
               >
                 {link.name}
               </Link>
@@ -60,17 +60,15 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-4">
             <button
               onClick={() => changeLanguage("en")}
-              className={`px-3 py-1 text-sm rounded-md transition-all ${
-                language === "en" ? "bg-blue-100 text-blue-600" : "text-gray-700 hover:bg-gray-100"
-              }`}
+              className={`px-3 py-1 text-sm rounded-md transition-all ${language === "en" ? "bg-blue-100 text-blue-600" : "text-gray-700 hover:bg-gray-100"
+                }`}
             >
               {t("english")}
             </button>
             <button
               onClick={() => changeLanguage("bn")}
-              className={`px-3 py-1 text-sm rounded-md transition-all ${
-                language === "bn" ? "bg-blue-100 text-blue-600" : "text-gray-700 hover:bg-gray-100"
-              }`}
+              className={`px-3 py-1 text-sm rounded-md transition-all ${language === "bn" ? "bg-blue-100 text-blue-600" : "text-gray-700 hover:bg-gray-100"
+                }`}
             >
               {t("bangla")}
             </button>
@@ -81,11 +79,10 @@ const Navbar = () => {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all ${
-                      isActive(link.path)
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all ${isActive(link.path)
                         ? "text-blue-600 bg-blue-50"
                         : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-                    }`}
+                      }`}
                   >
                     {link.name}
                   </Link>
@@ -187,17 +184,15 @@ const Navbar = () => {
         <div className="flex justify-center space-x-2">
           <button
             onClick={() => changeLanguage("en")}
-            className={`px-3 py-1 text-sm rounded-md ${
-              language === "en" ? "bg-blue-100 text-blue-600" : "text-gray-700 hover:bg-gray-100"
-            }`}
+            className={`px-3 py-1 text-sm rounded-md ${language === "en" ? "bg-blue-100 text-blue-600" : "text-gray-700 hover:bg-gray-100"
+              }`}
           >
             {t("english")}
           </button>
           <button
             onClick={() => changeLanguage("bn")}
-            className={`px-3 py-1 text-sm rounded-md ${
-              language === "bn" ? "bg-blue-100 text-blue-600" : "text-gray-700 hover:bg-gray-100"
-            }`}
+            className={`px-3 py-1 text-sm rounded-md ${language === "bn" ? "bg-blue-100 text-blue-600" : "text-gray-700 hover:bg-gray-100"
+              }`}
           >
             {t("bangla")}
           </button>

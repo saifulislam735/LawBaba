@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useTranslation } from '../hooks/useTranslation';
 import { AiOutlineHome } from 'react-icons/ai';
+import logo from '../../public/logo drk.png'
 
 const ClientLogin = () => {
   const [email, setEmail] = useState('');
@@ -39,7 +40,7 @@ const ClientLogin = () => {
             <AiOutlineHome className="text-xl" /> {t('home')}
           </button>
           <Link to='/'>
-            <img src="../../public/logo drk.png" className='h-24 ' alt="" />
+            <img src={logo} className='h-24 ' alt="" />
           </Link>
         </div>
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useTranslation } from '../hooks/useTranslation';  // import useTranslation
 import { AiOutlineHome } from 'react-icons/ai';
+import logo from '../../public/logo drk.png'
 
 export default function LawyerLogin() {
   const { t } = useTranslation();  // use the translation function
@@ -39,7 +40,7 @@ export default function LawyerLogin() {
             <AiOutlineHome className="text-xl" /> {t('home')}
           </button>
           <Link to='/'>
-            <img src="../../public/logo drk.png" className='h-24 ' alt="" />
+            <img src={logo} className='h-24 ' alt="" />
           </Link>
         </div>
         <div>

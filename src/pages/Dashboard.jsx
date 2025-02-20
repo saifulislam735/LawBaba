@@ -8,6 +8,7 @@ import { Calendar, FileText, Users, Briefcase, MessageCircle, Menu } from 'lucid
 import { Link } from "react-router-dom"
 import { AiOutlineHome } from "react-icons/ai"
 import { useTranslation } from "../hooks/useTranslation"
+import logo from '../../public/logo drk.png'
 
 const Dashboard = () => {
   const { t } = useTranslation()
@@ -72,12 +73,12 @@ const Dashboard = () => {
       <div className="flex justify-between items-center p-4 md:px-4">
         <Link to="/">
           <button className="flex items-center gap-2 text-blue-600 hover:text-blue-500 font-medium bg-gray-100 px-3 py-2 rounded-lg shadow hover:bg-gray-200 transition">
-            <AiOutlineHome className="text-xl" /> 
+            <AiOutlineHome className="text-xl" />
             <span className="hidden sm:inline">{t('home')}</span>
           </button>
         </Link>
         <Link to='/'>
-          <img src="../../public/logo drk.png" className="h-16 md:h-24" alt="Logo" />
+          <img src={logo} className="h-16 md:h-24" alt="Logo" />
         </Link>
       </div>
 
@@ -115,8 +116,8 @@ const Dashboard = () => {
               <button
                 key={view}
                 className={`px-4 py-2 rounded-md transition duration-300 ease-in-out flex items-center justify-center md:justify-start
-                  ${activeView === view 
-                    ? "bg-blue-600 text-white" 
+                  ${activeView === view
+                    ? "bg-blue-600 text-white"
                     : "text-gray-600 hover:bg-gray-200"}`}
                 onClick={() => {
                   setActiveView(view)
