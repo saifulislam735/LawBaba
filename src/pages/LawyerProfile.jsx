@@ -1,36 +1,39 @@
-import { useParams } from 'react-router-dom'
-import { useState } from 'react'
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { lawyers as mockLawyers } from '../data/mockData';
 
 const LawyerProfile = () => {
-  const { id } = useParams()
-  const [activeTab, setActiveTab] = useState('about')
+  const { id } = useParams();
+  const [lawyer, setLawyer] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState('about');
 
-  // Dummy data - replace with API call
-  const lawyer = {
-    id,
-    name: 'Sarah Johnson',
-    specialization: 'Corporate Law',
-    experience: '15 years',
-    rating: 4.8,
-    consultationFee: '$200',
-    about: 'Experienced corporate lawyer with expertise in mergers & acquisitions, contract law, and business litigation.',
-    education: [
-      'J.D., Harvard Law School',
-      'B.A. in Economics, Yale University'
-    ],
-    expertise: [
-      'Mergers & Acquisitions',
-      'Contract Law',
-      'Business Litigation',
-      'Corporate Governance'
-    ],
-    availability: {
-      monday: '9:00 AM - 5:00 PM',
-      tuesday: '9:00 AM - 5:00 PM',
-      wednesday: '9:00 AM - 5:00 PM',
-      thursday: '9:00 AM - 5:00 PM',
-      friday: '9:00 AM - 3:00 PM'
-    }
+  useEffect(() => {
+    const fetchLawyer = async () => {
+      setLoading(true);
+      try {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        // Ensure the id is a string for comparison
+        const selectedLawyer = mockLawyers.find(l => String(l.id) === String(id));
+
+        setLawyer(selectedLawyer);
+      } catch (error) {
+        console.error('Failed to fetch lawyer:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLawyer();
+  }, [id]);
+
+  if (loading) {
+    return <div className="text-center text-gray-600 py-10">Loading lawyer details...</div>;
+  }
+
+  if (!lawyer) {
+    return <div className="text-center text-red-600 py-10">Lawyer not found</div>;
   }
 
   return (
@@ -84,7 +87,7 @@ const LawyerProfile = () => {
             <div>
               <h2 className="text-xl font-semibold mb-4">About</h2>
               <p className="text-gray-600 mb-6">{lawyer.about}</p>
-              
+
               <h3 className="text-lg font-semibold mb-3">Education</h3>
               <ul className="list-disc list-inside text-gray-600 mb-6">
                 {lawyer.education.map((edu, index) => (
@@ -124,7 +127,7 @@ const LawyerProfile = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LawyerProfile
+export default LawyerProfile;

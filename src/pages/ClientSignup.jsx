@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { useTranslation } from '../hooks/useTranslation';
 
 export default function ClientSignup() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -19,7 +21,7 @@ export default function ClientSignup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-      return setError('Passwords do not match');
+      return setError(t('passwordMismatch'));
     }
 
     try {
@@ -28,7 +30,8 @@ export default function ClientSignup() {
       await signup(formData.email, formData.password, 'client');
       navigate('/profile');
     } catch (err) {
-      setError('Failed to create an account');
+      console.log(err)
+      setError(t('accountCreationFailed'));
     } finally {
       setLoading(false);
     }
@@ -47,10 +50,10 @@ export default function ClientSignup() {
       <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-xl shadow-lg mx-auto">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Create Client Account
+            {t('createClientAccount')}
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Get started with legal consultation
+            {t('getStartedLegalConsultation')}
           </p>
         </div>
         {error && (
@@ -63,7 +66,7 @@ export default function ClientSignup() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
-                  First Name
+                  {t('firstName')}
                 </label>
                 <input
                   id="firstName"
@@ -77,7 +80,7 @@ export default function ClientSignup() {
               </div>
               <div>
                 <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
-                  Last Name
+                  {t('lastName')}
                 </label>
                 <input
                   id="lastName"
@@ -92,7 +95,7 @@ export default function ClientSignup() {
             </div>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email address
+                {t('emailAddress')}
               </label>
               <input
                 id="email"
@@ -106,7 +109,7 @@ export default function ClientSignup() {
             </div>
             <div>
               <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                Phone Number
+                {t('phoneNumber')}
               </label>
               <input
                 id="phone"
@@ -120,7 +123,7 @@ export default function ClientSignup() {
             </div>
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password
+                {t('password')}
               </label>
               <input
                 id="password"
@@ -134,7 +137,7 @@ export default function ClientSignup() {
             </div>
             <div>
               <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
-                Confirm Password
+                {t('confirmPassword')}
               </label>
               <input
                 id="confirmPassword"
@@ -154,19 +157,19 @@ export default function ClientSignup() {
               disabled={loading}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
             >
-              {loading ? 'Creating account...' : 'Sign up'}
+              {loading ? t('creatingAccount') : t('signUp')}
             </button>
           </div>
 
           <div className="flex items-center justify-between">
             <div className="text-sm">
               <Link to="/lawyer-signup" className="font-medium text-indigo-600 hover:text-indigo-500">
-                Sign up as a lawyer instead?
+                {t('signUpAsLawyerInstead')}
               </Link>
             </div>
             <div className="text-sm">
               <Link to="/client-login" className="font-medium text-indigo-600 hover:text-indigo-500">
-                Already have an account?
+                {t('alreadyHaveAccount')}
               </Link>
             </div>
           </div>

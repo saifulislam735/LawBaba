@@ -15,6 +15,7 @@ import { NotificationProvider } from "./contexts/NotificationContext"
 import { AuthProvider, useAuth } from "./contexts/AuthContext"
 import { LanguageProvider } from "./contexts/LanguageContext"
 import { useTranslation } from "./hooks/useTranslation"
+// import ScrollToTop from "./components/ScrollToTop/ScrollToTop"
 
 // Protected Route component
 const ProtectedRoute = ({ children, allowedRoles = [] }) => {
@@ -71,6 +72,7 @@ const AppContent = () => {
 
   return (
     <Routes>
+      {/* <ScrollToTop /> */}
       {/* Public routes */}
       <Route path="/client-login" element={<ClientLogin />} />
       <Route path="/lawyer-login" element={<LawyerLogin />} />
@@ -257,13 +259,13 @@ const AppContent = () => {
                         </div>
                         <div className="mt-6 flex items-center">
                           <div className="flex-shrink-0">
-                            <span className="sr-only">{t("michaelRogers")}</span>
+                            <span className="sr-only">{t("shuvoDas")}</span>
                             <div className="h-14 w-14 rounded-full bg-blue-200 flex items-center justify-center">
-                              <span className="text-blue-600 font-semibold text-lg">MR</span>
+                              <span className="text-blue-600 font-semibold text-lg">SD</span>
                             </div>
                           </div>
                           <div className="ml-3">
-                            <p className="text-sm font-medium text-gray-900">{t("michaelRogers")}</p>
+                            <p className="text-sm font-medium text-gray-900">{t("shuvoDas")}</p>
                             <p className="text-sm text-gray-500">{t("smallBusinessOwner")}</p>
                           </div>
                         </div>
@@ -282,13 +284,13 @@ const AppContent = () => {
                         </div>
                         <div className="mt-6 flex items-center">
                           <div className="flex-shrink-0">
-                            <span className="sr-only">{t("jenniferChen")}</span>
+                            <span className="sr-only">{t("masumHossain")}</span>
                             <div className="h-14 w-14 rounded-full bg-blue-200 flex items-center justify-center">
-                              <span className="text-blue-600 font-semibold text-lg">JC</span>
+                              <span className="text-blue-600 font-semibold text-lg">MH</span>
                             </div>
                           </div>
                           <div className="ml-3">
-                            <p className="text-sm font-medium text-gray-900">{t("jenniferChen")}</p>
+                            <p className="text-sm font-medium text-gray-900">{t("masumHossain")}</p>
                             <p className="text-sm text-gray-500">{t("corporateLawyer")}</p>
                           </div>
                         </div>
@@ -307,13 +309,13 @@ const AppContent = () => {
                         </div>
                         <div className="mt-6 flex items-center">
                           <div className="flex-shrink-0">
-                            <span className="sr-only">{t("davidMartinez")}</span>
+                            <span className="sr-only">{t("raihanSarker")}</span>
                             <div className="h-14 w-14 rounded-full bg-blue-200 flex items-center justify-center">
-                              <span className="text-blue-600 font-semibold text-lg">DM</span>
+                              <span className="text-blue-600 font-semibold text-lg">RS</span>
                             </div>
                           </div>
                           <div className="ml-3">
-                            <p className="text-sm font-medium text-gray-900">{t("davidMartinez")}</p>
+                            <p className="text-sm font-medium text-gray-900">{t("raihanSarker")}</p>
                             <p className="text-sm text-gray-500">{t("startupFounder")}</p>
                           </div>
                         </div>

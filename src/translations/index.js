@@ -1,5 +1,7 @@
 export const translations = {
   en: {
+    loginAsLawyerLink: "Login as Lawyer",
+
     // Navigation
     home: 'Home',
     lawyers: 'Lawyers',
@@ -173,21 +175,67 @@ export const translations = {
     orContinueWith: 'Or continue with',
     invalidCredentials: 'Invalid email or password',
 
+    //SignUp
+    createClientAccount: "Create Client Account",
+    getStartedLegalConsultation: "Get started with legal consultation",
+    firstName: "First Name",
+    lastName: "Last Name",
+    emailAddress: "Email address",
+    phoneNumber: "Phone Number",
+    confirmPassword: "Confirm Password",
+    signUp: "Sign up",
+    creatingAccount: "Creating account...",
+    accountCreationFailed: "Failed to create an account",
+    passwordMismatch: "Passwords do not match",
+    signUpAsLawyerInstead: "Sign up as a lawyer instead?",
+    alreadyHaveAccount: "Already have an account?",
+
+    //
+    lawyerPortal: "Lawyer Portal",
+    accessLegalPractice: "Access your legal practice dashboard",
+    loginFailed: "Failed to sign in",
+    lookingForClientLogin: "Looking for client login?",
+    needAccount: "Need an account?",
+
+    //
+    createLawyerAccount: "Create Lawyer Account",
+    joinNetwork: "Join the network of trusted lawyers",
+    barNumber: "Bar Number",
+    specialization: "Specialization",
+    selectSpecialization: "Select Specialization",
+    experienceYears: "Years of Experience",
+    signUpAsClient: "Sign up as Client",
+    haveAccount: "Already have an account? Sign in",
+
     //
     fullName: "Full Name",
-    confirmPassword: "Confirm Password",
     role: "I am a",
     create: "Create Account",
     success: "Account created successfully!",
     errorPasswordMismatch: "Passwords do not match",
     errorRegistration: "Failed to create account. Please try again.",
 
+    //
+    searchTitle: 'Find a Lawyer',
+    noLawyersFound: 'No lawyers found',
+    adjustSearch: 'Try adjusting your search criteria or filters',
+    errorMessage: 'Failed to fetch lawyers. Please try again.',
+
+    shuvoDas: "Shuvo Das",
+    masumHossain: "Masum Hossain",
+    raihanSarker: "Raihan Sarker",
+  
     // Language
     language: 'Language',
     english: 'English',
     bangla: 'বাংলা',
   },
   bn: {
+    loginAsLawyerLink: "আইনজীবী হিসেবে লগইন করুন",
+    shuvoDas: "শুভ দাশ",
+    masumHossain: "মাসুম হোসেন",
+    raihanSarker: "রাইহান সরকার",
+  
     // Navigation
     home: 'হোম',
     lawyers: 'আইনজীবী',
@@ -361,17 +409,49 @@ export const translations = {
     invalidCredentials: 'ভুল ইমেইল বা পাসওয়ার্ড',
 
     //
+    createClientAccount: "ক্লায়েন্ট অ্যাকাউন্ট তৈরি করুন",
+    getStartedLegalConsultation: "আইনি পরামর্শ নিয়ে শুরু করুন",
+    firstName: "প্রথম নাম",
+    lastName: "শেষ নাম",
+    emailAddress: "ইমেইল ঠিকানা",
+    phoneNumber: "ফোন নম্বর",
+    confirmPassword: "পাসওয়ার্ড নিশ্চিত করুন",
+    signUp: "সাইন আপ",
+    creatingAccount: "অ্যাকাউন্ট তৈরি হচ্ছে...",
+    accountCreationFailed: "অ্যাকাউন্ট তৈরি করতে ব্যর্থ হয়েছে",
+    passwordMismatch: "পাসওয়ার্ড মেলেনি",
+    signUpAsLawyerInstead: "বদলে আইনজীবী হিসেবে সাইন আপ করবেন?",
+    alreadyHaveAccount: "আগেই কি আপনার অ্যাকাউন্ট আছে?",
 
+    //
+    lawyerPortal: "আইনজীবী পোর্টাল",
+    accessLegalPractice: "আপনার আইনি প্র্যাকটিস ড্যাশবোর্ডে প্রবেশ করুন",
+    loginFailed: "সাইন ইন করতে ব্যর্থ",
+    lookingForClientLogin: "ক্লায়েন্ট লগইন খুঁজছেন?",
+    needAccount: "একটি অ্যাকাউন্ট প্রয়োজন?",
+
+    //
+    createLawyerAccount: "আইনজীবী অ্যাকাউন্ট তৈরি করুন",
+    joinNetwork: "বিশ্বস্ত আইনজীবীদের নেটওয়ার্কে যোগ দিন",
+    barNumber: "বার নম্বর",
+    specialization: "বিশেষজ্ঞতা",
+    selectSpecialization: "বিশেষজ্ঞতা নির্বাচন করুন",
+    experienceYears: "অভিজ্ঞতার বছর",
+    signUpAsClient: "ক্লায়েন্ট হিসেবে সাইন আপ করুন",
+    haveAccount: "আগে থেকেই অ্যাকাউন্ট আছে? সাইন ইন করুন",
 
     fullName: "সম্পূর্ণ নাম",
-    confirmPassword: "পাসওয়ার্ড নিশ্চিত করুন",
     role: "আমি একজন",
     create: "অ্যাকাউন্ট তৈরি করুন",
     success: "অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে!",
     errorPasswordMismatch: "পাসওয়ার্ড মিলছে না",
     errorRegistration: "অ্যাকাউন্ট তৈরি করতে ব্যর্থ হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।",
 
-
+    //
+    searchTitle: 'একজন আইনজীবী খুঁজুন',
+    noLawyersFound: 'কোন আইনজীবী পাওয়া যায়নি',
+    adjustSearch: 'আপনার অনুসন্ধান মানদণ্ড বা ফিল্টারগুলি সামঞ্জস্য করার চেষ্টা করুন',
+    errorMessage: 'আইনজীবী ফেচ করতে ব্যর্থ হয়েছে। আবার চেষ্টা করুন।',
     // Language
     language: 'ভাষা',
     english: 'English',

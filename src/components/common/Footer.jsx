@@ -17,9 +17,10 @@ const Footer = () => {
                 alt="Logo"
                 className="h-12 w-12 rounded-lg shadow-md"
               /> */}
-              <Link to={'/'}>
-                <h1 className='text-3xl md:text-4xl font-bold text-white'>Lawবাবা</h1>
+              <Link to="/" className="flex items-center">
+                <img className="h-32 w-auto" src="../../../public/logo wht.png" alt="Logo" />
               </Link>
+
             </div>
             <p className="text-gray-400 text-base text-center leading-relaxed max-w-xs">
               {t('footerTagline')}

@@ -9,9 +9,9 @@ const LawyerCard = ({ lawyer }) => {
     experience,
     rating,
     reviewCount,
-    hourlyRate,
+    consultationPay,
     imageUrl,
-    availability
+    availabilitybool
   } = lawyer;
 
   return (
@@ -37,10 +37,10 @@ const LawyerCard = ({ lawyer }) => {
           </div>
 
           <div className="mt-4 flex items-center gap-4">
-            <span className="text-gray-900 font-medium">${hourlyRate}/hr</span>
+            <span className="text-gray-900 font-medium">{consultationPay}৳</span>
             <span className="text-green-600 text-sm flex items-center">
               <CalendarIcon className="h-4 w-4 mr-1" />
-              {availability ? 'Available' : 'Busy'}
+              {availabilitybool ? 'Available' : 'Busy'}
             </span>
           </div>
         </div>

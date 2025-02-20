@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { useTranslation } from '../hooks/useTranslation';
 
 export default function LawyerSignup() {
+  const { t } = useTranslation();  // use the translation function
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -22,7 +25,7 @@ export default function LawyerSignup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-      return setError('Passwords do not match');
+      return setError(t('passwordMismatch'));  // use translation key
     }
 
     try {
@@ -31,7 +34,8 @@ export default function LawyerSignup() {
       await signup(formData.email, formData.password, 'lawyer');
       navigate('/dashboard');
     } catch (err) {
-      setError('Failed to create an account');
+      console.log(err)
+      setError(t('accountCreationFailed'));  // use translation key
     } finally {
       setLoading(false);
     }
@@ -61,10 +65,10 @@ export default function LawyerSignup() {
       <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-xl shadow-lg mx-auto">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Create Lawyer Account
+            {t('createLawyerAccount')}  {/* use translation key */}
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Join our network of legal professionals
+            {t('joinNetwork')}  {/* use translation key */}
           </p>
         </div>
         {error && (
@@ -77,7 +81,7 @@ export default function LawyerSignup() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
-                  First Name
+                  {t('firstName')}  {/* use translation key */}
                 </label>
                 <input
                   id="firstName"
@@ -91,7 +95,7 @@ export default function LawyerSignup() {
               </div>
               <div>
                 <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
-                  Last Name
+                  {t('lastName')}  {/* use translation key */}
                 </label>
                 <input
                   id="lastName"
@@ -106,7 +110,7 @@ export default function LawyerSignup() {
             </div>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email address
+                {t('emailAddress')}  {/* use translation key */}
               </label>
               <input
                 id="email"
@@ -120,7 +124,7 @@ export default function LawyerSignup() {
             </div>
             <div>
               <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                Phone Number
+                {t('phoneNumber')}  {/* use translation key */}
               </label>
               <input
                 id="phone"
@@ -134,7 +138,7 @@ export default function LawyerSignup() {
             </div>
             <div>
               <label htmlFor="barNumber" className="block text-sm font-medium text-gray-700">
-                Bar Number
+                {t('barNumber')}  {/* use translation key */}
               </label>
               <input
                 id="barNumber"
@@ -148,7 +152,7 @@ export default function LawyerSignup() {
             </div>
             <div>
               <label htmlFor="specialization" className="block text-sm font-medium text-gray-700">
-                Specialization
+                {t('specialization')}  {/* use translation key */}
               </label>
               <select
                 id="specialization"
@@ -158,7 +162,7 @@ export default function LawyerSignup() {
                 value={formData.specialization}
                 onChange={handleChange}
               >
-                <option value="">Select a specialization</option>
+                <option value="">{t('selectSpecialization')}</option>  {/* use translation key */}
                 {specializations.map(spec => (
                   <option key={spec} value={spec}>{spec}</option>
                 ))}
@@ -166,7 +170,7 @@ export default function LawyerSignup() {
             </div>
             <div>
               <label htmlFor="experience" className="block text-sm font-medium text-gray-700">
-                Years of Experience
+                {t('experienceYears')}  {/* use translation key */}
               </label>
               <input
                 id="experience"
@@ -181,7 +185,7 @@ export default function LawyerSignup() {
             </div>
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password
+                {t('password')}  {/* use translation key */}
               </label>
               <input
                 id="password"
@@ -195,7 +199,7 @@ export default function LawyerSignup() {
             </div>
             <div>
               <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
-                Confirm Password
+                {t('confirmPassword')}  {/* use translation key */}
               </label>
               <input
                 id="confirmPassword"
@@ -215,21 +219,14 @@ export default function LawyerSignup() {
               disabled={loading}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
             >
-              {loading ? 'Creating account...' : 'Sign up'}
+              {loading ? t('creatingAccount') : t('signUp')}  {/* use translation key */}
             </button>
           </div>
 
-          <div className="flex items-center justify-between">
-            <div className="text-sm">
-              <Link to="/client-signup" className="font-medium text-blue-600 hover:text-blue-500">
-                Sign up as a client instead?
-              </Link>
-            </div>
-            <div className="text-sm">
-              <Link to="/lawyer-login" className="font-medium text-blue-600 hover:text-blue-500">
-                Already have an account?
-              </Link>
-            </div>
+          <div className="text-sm text-center">
+            <Link to="/login" className="font-medium text-blue-600 hover:text-blue-500">
+              {t('alreadyHaveAccount')}  {/* use translation key */}
+            </Link>
           </div>
         </form>
       </div>

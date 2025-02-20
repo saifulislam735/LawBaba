@@ -4,10 +4,10 @@ import {
   StarIcon,
   BriefcaseIcon,
   AcademicCapIcon,
-  ClockIcon,
+  // ClockIcon,
   ChatBubbleLeftRightIcon,
   CalendarIcon,
-  DocumentTextIcon
+  // DocumentTextIcon
 } from '@heroicons/react/24/outline';
 import BookingModal from '../booking/BookingModal';
 

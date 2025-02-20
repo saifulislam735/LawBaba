@@ -24,6 +24,7 @@ const LawyerList = () => {
         setLawyers(mockLawyers);
         setFilteredLawyers(mockLawyers);
       } catch (error) {
+        console.log(error)
         addNotification({
           type: 'error',
           title: 'Error',

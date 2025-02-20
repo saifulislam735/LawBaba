@@ -40,8 +40,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <Link to="/" className="flex items-center">
-            {/* <img className="h-8 w-auto" src="/logo.png" alt="Logo" /> */}
-            <h1 className='text-3xl md:text-4xl font-bold text-gray-950'>Lawবাবা</h1>
+            <img className="h-20 w-auto" src="../../../public/logo wht.png" alt="Logo" />
           </Link>
 
           <div className="hidden md:flex space-x-4">

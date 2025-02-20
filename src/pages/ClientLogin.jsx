@@ -20,6 +20,7 @@ const ClientLogin = () => {
       await login(email, password);
       navigate('/');
     } catch (err) {
+      console.log(err)
       setError(t('invalidCredentials'));
     } finally {
       setLoading(false);
@@ -29,7 +30,6 @@ const ClientLogin = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <img className="mx-auto h-12 w-auto" src="/logo.png" alt="Logo" />
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
           {t('clientLogin')}
         </h2>
@@ -150,6 +150,15 @@ const ClientLogin = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Add the link/button to go to Lawyer login */}
+      <div className="text-center mt-4">
+        <p className="text-sm text-gray-600">
+          <Link to="/lawyer-login" className="font-medium text-blue-600 hover:text-blue-500">
+            {t('loginAsLawyerLink')}
+          </Link>
+        </p>
       </div>
     </div>
   );
