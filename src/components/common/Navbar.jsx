@@ -1,37 +1,37 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
-import { useLanguage } from '../../contexts/LanguageContext';
-import { useTranslation } from '../../hooks/useTranslation';
+
+import { useState } from "react"
+import { Link, useLocation } from "react-router-dom"
+import { useAuth } from "../../contexts/AuthContext"
+import { useLanguage } from "../../contexts/LanguageContext"
+import { useTranslation } from "../../hooks/useTranslation"
+import { ProfileButton } from "./navbar-profile"
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const { isAuthenticated, user, logout } = useAuth();
-  const { language, changeLanguage } = useLanguage();
-  const { t } = useTranslation();
-  const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false)
+  const { isAuthenticated, user, logout } = useAuth()
+  const { language, changeLanguage } = useLanguage()
+  const { t } = useTranslation()
+  const location = useLocation()
 
   const navLinks = [
-    { name: t('home'), path: '/' },
-    { name: t('lawyers'), path: '/lawyers' },
-    { name: t('resources'), path: '/legal-resources' },
-  ];
+    { name: t("home"), path: "/" },
+    { name: t("lawyers"), path: "/lawyers" },
+    { name: t("resources"), path: "/legal-resources" },
+  ]
 
   const clientLinks = [
-    { name: t('messages'), path: '/messages' },
-    { name: t('profile'), path: '/profile' },
-  ];
+    { name: t("messages"), path: "/messages" },
+    { name: t("profile"), path: "/profile" },
+  ]
 
-  const lawyerLinks = [
-    { name: t('dashboard'), path: '/dashboard' },
-  ];
+  const lawyerLinks = [{ name: t("dashboard"), path: "/dashboard" }]
 
   const getAuthLinks = () => {
-    if (!isAuthenticated) return [];
-    return user.role === 'lawyer' ? lawyerLinks : clientLinks;
-  };
+    if (!isAuthenticated) return []
+    return user.role === "lawyer" ? lawyerLinks : clientLinks
+  }
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path) => location.pathname === path
 
   return (
     <nav className="bg-white shadow-sm fixed w-full z-10">
@@ -46,8 +46,11 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${isActive(link.path) ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
-                  }`}
+                className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${
+                  isActive(link.path)
+                    ? "text-blue-600 bg-blue-50"
+                    : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                }`}
               >
                 {link.name}
               </Link>
@@ -56,18 +59,20 @@ const Navbar = () => {
 
           <div className="hidden md:flex items-center space-x-4">
             <button
-              onClick={() => changeLanguage('en')}
-              className={`px-3 py-1 text-sm rounded-md transition-all ${language === 'en' ? 'bg-blue-100 text-blue-600' : 'text-gray-700 hover:bg-gray-100'
-                }`}
+              onClick={() => changeLanguage("en")}
+              className={`px-3 py-1 text-sm rounded-md transition-all ${
+                language === "en" ? "bg-blue-100 text-blue-600" : "text-gray-700 hover:bg-gray-100"
+              }`}
             >
-              {t('english')}
+              {t("english")}
             </button>
             <button
-              onClick={() => changeLanguage('bn')}
-              className={`px-3 py-1 text-sm rounded-md transition-all ${language === 'bn' ? 'bg-blue-100 text-blue-600' : 'text-gray-700 hover:bg-gray-100'
-                }`}
+              onClick={() => changeLanguage("bn")}
+              className={`px-3 py-1 text-sm rounded-md transition-all ${
+                language === "bn" ? "bg-blue-100 text-blue-600" : "text-gray-700 hover:bg-gray-100"
+              }`}
             >
-              {t('bangla')}
+              {t("bangla")}
             </button>
 
             {isAuthenticated ? (
@@ -76,18 +81,16 @@ const Navbar = () => {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all ${isActive(link.path) ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
-                      }`}
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all ${
+                      isActive(link.path)
+                        ? "text-blue-600 bg-blue-50"
+                        : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                    }`}
                   >
                     {link.name}
                   </Link>
                 ))}
-                <button
-                  onClick={logout}
-                  className="text-gray-900 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-all"
-                >
-                  {t('logout')}
-                </button>
+                <ProfileButton user={user} logout={logout} />
               </>
             ) : (
               <>
@@ -95,13 +98,13 @@ const Navbar = () => {
                   to="/client-login"
                   className="text-gray-900 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-all"
                 >
-                  {t('login')}
+                  {t("login")}
                 </Link>
                 <Link
                   to="/client-signup"
                   className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium transition-all"
                 >
-                  {t('signup')}
+                  {t("signup")}
                 </Link>
               </>
             )}
@@ -122,7 +125,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className={`${isOpen ? 'block' : 'hidden'} md:hidden bg-white shadow-md px-4 pb-4 space-y-2`}>
+      <div className={`${isOpen ? "block" : "hidden"} md:hidden bg-white shadow-md px-4 pb-4 space-y-2`}>
         {navLinks.map((link) => (
           <Link
             key={link.path}
@@ -134,20 +137,75 @@ const Navbar = () => {
           </Link>
         ))}
 
-        {!isAuthenticated && (
+        {isAuthenticated ? (
           <>
-            <Link to="/client-login" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100" onClick={() => setIsOpen(false)}>{t('login')}</Link>
-            <Link to="/client-signup" className="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700" onClick={() => setIsOpen(false)}>{t('signup')}</Link>
+            {user?.name && (
+              <div className="px-3 py-2 text-sm font-medium text-gray-900">
+                {user.name}
+                <div className="text-xs text-gray-500">{user.email}</div>
+              </div>
+            )}
+            {getAuthLinks().map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ))}
+            <button
+              onClick={() => {
+                logout()
+                setIsOpen(false)
+              }}
+              className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-600 hover:bg-gray-100"
+            >
+              {t("logout")}
+            </button>
+          </>
+        ) : (
+          <>
+            <Link
+              to="/client-login"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100"
+              onClick={() => setIsOpen(false)}
+            >
+              {t("login")}
+            </Link>
+            <Link
+              to="/client-signup"
+              className="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700"
+              onClick={() => setIsOpen(false)}
+            >
+              {t("signup")}
+            </Link>
           </>
         )}
 
         <div className="flex justify-center space-x-2">
-          <button onClick={() => changeLanguage('en')} className={`px-3 py-1 text-sm rounded-md ${language === 'en' ? 'bg-blue-100 text-blue-600' : 'text-gray-700 hover:bg-gray-100'}`}>{t('english')}</button>
-          <button onClick={() => changeLanguage('bn')} className={`px-3 py-1 text-sm rounded-md ${language === 'bn' ? 'bg-blue-100 text-blue-600' : 'text-gray-700 hover:bg-gray-100'}`}>{t('bangla')}</button>
+          <button
+            onClick={() => changeLanguage("en")}
+            className={`px-3 py-1 text-sm rounded-md ${
+              language === "en" ? "bg-blue-100 text-blue-600" : "text-gray-700 hover:bg-gray-100"
+            }`}
+          >
+            {t("english")}
+          </button>
+          <button
+            onClick={() => changeLanguage("bn")}
+            className={`px-3 py-1 text-sm rounded-md ${
+              language === "bn" ? "bg-blue-100 text-blue-600" : "text-gray-700 hover:bg-gray-100"
+            }`}
+          >
+            {t("bangla")}
+          </button>
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
+
