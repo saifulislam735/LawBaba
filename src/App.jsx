@@ -16,8 +16,12 @@ import { AuthProvider, useAuth } from "./contexts/AuthContext"
 import { LanguageProvider } from "./contexts/LanguageContext"
 import { useTranslation } from "./hooks/useTranslation"
 import Dashboard from "./pages/Dashboard"
+import ChatbotIcon from "./components/chatbot/ChatbotIcon"
+import ChatInterface from "./components/chatbot/ChatInterface"
+import { useState } from "react"
 // import ScrollToTop from "./components/ScrollToTop/ScrollToTop"
-
+import './App.css'
+import HelpCenterIcon from "./components/chatbot/HelpCenterIcon"
 // Protected Route component
 const ProtectedRoute = ({ children, allowedRoles = [] }) => {
   const { isAuthenticated, loading, user } = useAuth()
@@ -41,12 +45,21 @@ const ProtectedRoute = ({ children, allowedRoles = [] }) => {
   return children
 }
 
+
 // Layout component to handle the navbar and main content spacing
 const Layout = ({ children }) => {
+  const [isChatOpen, setIsChatOpen] = useState(false)
+  const toggleChat = () => {
+    setIsChatOpen(!isChatOpen)
+  }
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Navbar />
       <main className="flex-grow pt-16">
+        <HelpCenterIcon  />
+        <ChatbotIcon onClick={toggleChat} />
+        {isChatOpen && <ChatInterface onClose={toggleChat} />}
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">{children}</div>
       </main>
       <Footer />
