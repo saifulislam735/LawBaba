@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useTranslation } from '../hooks/useTranslation';
+import { AiOutlineHome } from 'react-icons/ai';
 
 export default function LawyerSignup() {
   const { t } = useTranslation();  // use the translation function
@@ -63,6 +64,17 @@ export default function LawyerSignup() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 py-12 px-4 sm:px-6 lg:px-8 flex items-center">
       <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-xl shadow-lg mx-auto">
+        <div className='flex justify-between items-center'>
+          <button
+            onClick={() => navigate('/')}
+            className="flex items-center gap-2 text-blue-600 hover:text-blue-500 font-medium bg-gray-100 px-4 py-2 rounded-lg shadow hover:bg-gray-200 transition"
+          >
+            <AiOutlineHome className="text-xl" /> {t('home')}
+          </button>
+          <Link to='/'>
+            <img src="../../public/logo drk.png" className='h-24 ' alt="" />
+          </Link>
+        </div>
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             {t('createLawyerAccount')}  {/* use translation key */}

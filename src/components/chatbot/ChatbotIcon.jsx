@@ -2,7 +2,7 @@ function ChatbotIcon({ onClick }) {
     return (
         <button
             onClick={onClick}
-            className="chatbot-icon z-50"
+            className="chatbot-icon z-40"
             aria-label="Open chat"
         >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">

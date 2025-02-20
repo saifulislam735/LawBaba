@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useTranslation } from '../hooks/useTranslation';
+import { AiOutlineHome } from 'react-icons/ai';
 
 const ClientLogin = () => {
   const [email, setEmail] = useState('');
@@ -30,6 +31,17 @@ const ClientLogin = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <div className='flex justify-between items-center'>
+          <button
+            onClick={() => navigate('/')}
+            className="flex items-center gap-2 text-blue-600 hover:text-blue-500 font-medium bg-gray-100 px-4 py-2 rounded-lg shadow hover:bg-gray-200 transition"
+          >
+            <AiOutlineHome className="text-xl" /> {t('home')}
+          </button>
+          <Link to='/'>
+            <img src="../../public/logo drk.png" className='h-24 ' alt="" />
+          </Link>
+        </div>
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
           {t('clientLogin')}
         </h2>
