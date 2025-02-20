@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../../hooks/useTranslation';
 import { Facebook, Twitter, Linkedin, ChevronRight } from 'lucide-react';
-
+import logo from '../../../public/logo drk.png'
 const Footer = () => {
   const { t } = useTranslation();
 
@@ -18,7 +18,7 @@ const Footer = () => {
                 className="h-12 w-12 rounded-lg shadow-md"
               /> */}
               <Link to="/" className="flex items-center">
-                <img className="h-32 w-auto" src="/public/logo drk.png" alt="Logo" />
+                <img className="h-32 w-auto" src={logo} alt="Logo" />
               </Link>
 
             </div>
