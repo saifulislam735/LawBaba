@@ -18,7 +18,7 @@ const Footer = () => {
                 className="h-12 w-12 rounded-lg shadow-md"
               /> */}
               <Link to="/" className="flex items-center">
-                <img className="h-32 w-auto" src="../../../public/logo drk.png" alt="Logo" />
+                <img className="h-32 w-auto" src="/public/logo drk.png" alt="Logo" />
               </Link>
 
             </div>
