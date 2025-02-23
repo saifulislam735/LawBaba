@@ -9,7 +9,7 @@ import LawyerList from "./pages/LawyerList"
 import LegalResources from "./pages/LegalResources"
 import Messages from "./pages/Messages"
 import UserProfile from "./pages/UserProfile"
-import LawyerProfile from "./pages/LawyerProfile"
+import LawyerProfile from "./components/lawyers/LawyerProfile"
 import NotFound from "./pages/NotFound"
 import { NotificationProvider } from "./contexts/NotificationContext"
 import { AuthProvider, useAuth } from "./contexts/AuthContext"
@@ -22,6 +22,10 @@ import { useState } from "react"
 // import ScrollToTop from "./components/ScrollToTop/ScrollToTop"
 import './App.css'
 import HelpCenterIcon from "./components/chatbot/HelpCenterIcon"
+import HelpCenter from "./components/support/HelpCenter"
+import BookingPage from "./components/booking/BookingPage"
+import ContactPage from "./pages/ContactPage"
+import FAQPage from "./pages/FAQPage"
 // Protected Route component
 const ProtectedRoute = ({ children, allowedRoles = [] }) => {
   const { isAuthenticated, loading, user } = useAuth()
@@ -56,10 +60,9 @@ const Layout = ({ children }) => {
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Navbar />
       <main className="flex-grow pt-16">
-        <HelpCenterIcon  />
+        <HelpCenterIcon />
         <ChatbotIcon onClick={toggleChat} />
         {isChatOpen && <ChatInterface onClose={toggleChat} />}
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">{children}</div>
       </main>
       <Footer />
@@ -92,6 +95,7 @@ const AppContent = () => {
       <Route path="/lawyer-login" element={<LawyerLogin />} />
       <Route path="/client-signup" element={<ClientSignup />} />
       <Route path="/lawyer-signup" element={<LawyerSignup />} />
+      <Route path="/help" element={<HelpCenter />} />
       <Route path="/signup" element={<Navigate to="/client-signup" />} />
       <Route path="/login" element={<Navigate to="/client-login" />} />
 
@@ -449,7 +453,14 @@ const AppContent = () => {
           </Layout>
         }
       />
-
+      <Route
+        path="/lawyers/:id/book"
+        element={
+          <Layout>
+            <BookingPage />
+          </Layout>
+        }
+      />
       <Route
         path="/legal-resources"
         element={
@@ -502,6 +513,23 @@ const AppContent = () => {
         }
       />
 
+      <Route
+        path="/contact"
+        element={
+          <Layout>
+            <ContactPage />
+          </Layout>
+        }
+      />
+
+      <Route
+        path="/faq"
+        element={
+          <Layout>
+            <FAQPage />
+          </Layout>
+        }
+      />
       {/* 404 route */}
       <Route path="*" element={<NotFound />} />
     </Routes>

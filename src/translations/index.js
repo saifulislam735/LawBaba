@@ -155,6 +155,7 @@ export const translations = {
     support: 'Support',
     faq: 'FAQ',
     contact: 'Contact',
+    help: 'Help',
     footerTagline: 'Your trusted legal assistant',
     copyright: 'Copyright',
 
@@ -389,6 +390,7 @@ export const translations = {
     support: 'সহায়তা',
     faq: 'প্রশ্নোত্তর',
     contact: 'যোগাযোগ',
+    help: 'সাহায্য',
     footerTagline: 'আপনার বিশ্বস্ত আইন সহায়ক',
     copyright: 'স্বত্বাধিকার',
 

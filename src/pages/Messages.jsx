@@ -1,179 +1,213 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-// import { useAuth } from '../contexts/AuthContext';
+import { useState, useEffect, useRef } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { ChatBubbleLeftRightIcon, CalendarIcon, PaperClipIcon } from '@heroicons/react/24/solid';
+import { lawyers as mockLawyers } from '../data/mockData'; // Adjust path as needed
 
-export default function Messages() {
-  const { id } = useParams();
-  // const { user } = useAuth();
-  const [selectedChat, setSelectedChat] = useState(null);
+const Messages = () => {
+  const { id } = useParams(); // Lawyer ID from the URL
+  const [selectedLawyer, setSelectedLawyer] = useState(null);
   const [message, setMessage] = useState('');
+  const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [file, setFile] = useState(null);
+  const messagesEndRef = useRef(null); // For auto-scrolling
 
-  // Dummy data - replace with API calls
-  const conversations = [
-    {
-      id: '1',
-      name: 'মো. সোহেল রানা',
-      role: 'ক্রিমিনাল আইনজীবী',
-      lastMessage: 'চুক্তি পর্যালোচনার জন্য আপনার অনুসন্ধান করার জন্য ধন্যবাদ।',
-      time: '2 ঘণ্টা আগে',
-      unread: 2,
-    },
-    {
-      id: '2',
-      name: 'ফারজানা পারভীন',
-      role: 'পারিবারিক আইনজীবী',
-      lastMessage: 'আমি আপনার কেসে সহায়তা করতে পারি। আমাকে জানালে আপনি কখন ফ্রি থাকবেন...',
-      time: '1 দিন আগে',
-      unread: 0,
-    },
-  ];
-
-  // Mock messages for the selected chat
-  const mockMessages = [
+  // Mock initial messages (replace with API fetch in production)
+  const initialMessages = [
     {
       id: 1,
-      senderId: 1,
-      text: 'হ্যালো! আমি কীভাবে আপনাকে সাহায্য করতে পারি?',
-      timestamp: '10:00 AM',
-    },
-    {
-      id: 2,
-      senderId: 'me',
-      text: 'হাই, আমাকে একটি চুক্তি পর্যালোচনার জন্য সাহায্য করতে হবে। আপনি কি পরামর্শের জন্য উপলব্ধ থাকবেন?',
-      timestamp: '10:05 AM',
-    },
-    {
-      id: 3,
-      senderId: 1,
-      text: 'অবশ্যই! আমি চুক্তি আইনে বিশেষজ্ঞ। আমার পরবর্তী সপ্তাহে কিছু সময় ফ্রি আছে। আপনি কি একটি পরামর্শের জন্য সময় নির্ধারণ করতে চান?',
-      timestamp: '10:10 AM',
+      senderId: 'lawyer',
+      text: 'Hello! How can I assist you today?',
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      file: null,
     },
   ];
 
   useEffect(() => {
-    if (id) {
-      const chat = conversations.find(c => c.id === id);
-      setSelectedChat(chat || conversations[0]);
-    }
+    const fetchSelectedLawyer = async () => {
+      setLoading(true);
+      try {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        const lawyer = mockLawyers.find((l) => String(l.id) === String(id));
+        if (!lawyer) throw new Error('Lawyer not found');
+        setSelectedLawyer(lawyer);
+        setMessages(initialMessages);
+      } catch (error) {
+        console.error('Failed to fetch lawyer:', error);
+        setSelectedLawyer(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) fetchSelectedLawyer();
   }, [id]);
+
+  // Auto-scroll to the latest message
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   const handleSendMessage = (e) => {
     e.preventDefault();
-    if (!message.trim()) return;
+    if (!message.trim() && !file) return;
 
-    // Add message to the chat
-    console.log('Sending message:', message);
+    const newMessage = {
+      id: messages.length + 1,
+      senderId: 'me',
+      text: message || '',
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      file: file ? { name: file.name, url: URL.createObjectURL(file) } : null, // Mock file URL
+    };
+
+    setMessages([...messages, newMessage]);
     setMessage('');
+    setFile(null);
+    // In production, send to API: POST /api/messages/{lawyerId} with FormData
+    console.log(`Message sent to lawyer ${id}:`, newMessage);
   };
 
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="container mx-auto px-4 py-12 text-center text-gray-600">
+        <div className="animate-spin inline-block w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full"></div>
+        <span className="ml-2">Loading chat...</span>
+      </div>
+    );
+  }
+
+  if (!selectedLawyer) {
+    return (
+      <div className="container mx-auto px-4 py-12 text-center text-red-600">
+        Lawyer not found
+      </div>
+    );
+  }
+
   return (
-    <div className="py-12">
-      <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-        <div className="grid grid-cols-12 divide-x h-[600px]">
-          {/* Conversation List */}
-          <div className="col-span-4 flex flex-col">
-            <div className="p-4 border-b">
-              <h2 className="text-lg font-semibold">Messages</h2>
-            </div>
-            <div className="overflow-y-auto flex-1">
-              {conversations.map((chat) => (
-                <div
-                  key={chat.id}
-                  onClick={() => setSelectedChat(chat)}
-                  className={`p-4 border-b cursor-pointer hover:bg-gray-50 ${selectedChat?.id === chat.id ? 'bg-blue-50' : ''
-                    }`}
-                >
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="font-semibold">{chat.name}</h3>
-                      <p className="text-sm text-gray-600">{chat.role}</p>
-                      <p className="text-sm text-gray-600 mt-1 line-clamp-1">
-                        {chat.lastMessage}
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-xs text-gray-500">{chat.time}</p>
-                      {chat.unread > 0 && (
-                        <span className="inline-flex items-center justify-center w-5 h-5 bg-blue-600 text-white text-xs rounded-full mt-1">
-                          {chat.unread}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
+    <div className="container mx-auto px-4 py-12">
+      <div className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col h-[600px]">
+        {/* Chat Header */}
+        <div className="p-4 border-b bg-gray-50 flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <img
+              src={selectedLawyer.imageUrl || 'https://via.placeholder.com/48'}
+              alt={selectedLawyer.name}
+              className="w-12 h-12 rounded-full object-cover"
+            />
+            <div>
+              <h2 className="text-lg font-semibold text-gray-900">{selectedLawyer.name}</h2>
+              <p className="text-sm text-gray-600">{selectedLawyer.specialization}</p>
             </div>
           </div>
+          <Link
+            to={`/lawyers/${id}/book`}
+            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-150 flex items-center gap-2"
+          >
+            <CalendarIcon className="h-5 w-5" />
+            Schedule Consultation
+          </Link>
+        </div>
 
-          {/* Chat Area */}
-          <div className="col-span-8 flex flex-col">
-            {selectedChat ? (
-              <>
-                {/* Chat Header */}
-                <div className="p-4 border-b">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h2 className="text-lg font-semibold">{selectedChat.name}</h2>
-                      <p className="text-sm text-gray-600">{selectedChat.role}</p>
-                    </div>
-                    <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-                      Schedule Consultation
-                    </button>
-                  </div>
-                </div>
-
-                {/* Messages */}
-                <div className="flex-1 overflow-y-auto p-4 space-y-4">
-                  {mockMessages.map((msg) => (
-                    <div
-                      key={msg.id}
-                      className={`flex ${msg.senderId === 'me' ? 'justify-end' : 'justify-start'}`}
-                    >
-                      <div
-                        className={`max-w-[70%] rounded-lg p-3 ${msg.senderId === 'me'
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-gray-100 text-gray-900'
-                          }`}
+        {/* Messages */}
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-100">
+          {messages.map((msg) => (
+            <div
+              key={msg.id}
+              className={`flex ${msg.senderId === 'me' ? 'justify-end' : 'justify-start'}`}
+            >
+              <div
+                className={`max-w-[70%] rounded-lg p-3 shadow-sm ${
+                  msg.senderId === 'me' ? 'bg-blue-600 text-white' : 'bg-white text-gray-900'
+                }`}
+              >
+                {msg.text && <p>{msg.text}</p>}
+                {msg.file && (
+                  <div className="mt-2">
+                    {msg.file.name.match(/\.(jpg|jpeg|png|gif)$/i) ? (
+                      <img
+                        src={msg.file.url}
+                        alt={msg.file.name}
+                        className="max-w-full h-auto rounded-md"
+                        style={{ maxHeight: '200px' }}
+                      />
+                    ) : (
+                      <a
+                        href={msg.file.url}
+                        download={msg.file.name}
+                        className={`flex items-center gap-2 underline ${
+                          msg.senderId === 'me' ? 'text-blue-100' : 'text-blue-600'
+                        }`}
                       >
-                        <p>{msg.text}</p>
-                        <p
-                          className={`text-xs mt-1 ${msg.senderId === 'me' ? 'text-blue-100' : 'text-gray-500'
-                            }`}
-                        >
-                          {msg.timestamp}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Message Input */}
-                <div className="p-4 border-t">
-                  <form onSubmit={handleSendMessage} className="flex space-x-4">
-                    <input
-                      type="text"
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      placeholder="Type your message..."
-                      className="flex-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                    <button
-                      type="submit"
-                      className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-                    >
-                      Send
-                    </button>
-                  </form>
-                </div>
-              </>
-            ) : (
-              <div className="flex-1 flex items-center justify-center text-gray-500">
-                Select a conversation to start messaging
+                        <PaperClipIcon className="h-5 w-5" />
+                        {msg.file.name}
+                      </a>
+                    )}
+                  </div>
+                )}
+                <p
+                  className={`text-xs mt-1 ${
+                    msg.senderId === 'me' ? 'text-blue-100' : 'text-gray-500'
+                  }`}
+                >
+                  {msg.timestamp}
+                </p>
               </div>
-            )}
-          </div>
+            </div>
+          ))}
+          <div ref={messagesEndRef} />
+        </div>
+
+        {/* Message Input */}
+        <div className="p-4 border-t bg-white">
+          <form onSubmit={handleSendMessage} className="flex space-x-4 items-center">
+            <input
+              type="text"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Type your message..."
+              className="flex-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <label className="relative cursor-pointer">
+              <PaperClipIcon className="h-6 w-6 text-gray-600 hover:text-blue-600" />
+              <input
+                type="file"
+                onChange={handleFileChange}
+                className="absolute inset-0 opacity-0 w-full h-full"
+                accept="image/*,.pdf,.doc,.docx"
+              />
+            </label>
+            <button
+              type="submit"
+              className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-150 flex items-center gap-2"
+              disabled={!message.trim() && !file}
+            >
+              <ChatBubbleLeftRightIcon className="h-5 w-5" />
+              Send
+            </button>
+          </form>
+          {file && (
+            <div className="mt-2 text-sm text-gray-600">
+              Attached: {file.name}{' '}
+              <button
+                onClick={() => setFile(null)}
+                className="text-red-600 hover:underline"
+              >
+                Remove
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Messages;

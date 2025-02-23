@@ -19,8 +19,7 @@ const LawyerList = () => {
     const fetchLawyers = async () => {
       try {
         setLoading(true);
-        // Simulate network delay
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
         setLawyers(mockLawyers);
         setFilteredLawyers(mockLawyers);
       } catch (error) {
@@ -39,44 +38,60 @@ const LawyerList = () => {
   }, [addNotification]);
 
   const handleSearch = (searchData) => {
-    const { searchQuery, specialization, experience, priceRange, rating } = searchData;
-    
+    const { searchQuery, specialization, experience, location, priceRange, rating } = searchData;
+
     let filtered = [...lawyers];
 
-    // Apply filters
+    // Apply search query (name, specialization, or location)
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter(
-        lawyer =>
+        (lawyer) =>
           lawyer.name.toLowerCase().includes(query) ||
           lawyer.specialization.toLowerCase().includes(query) ||
-          lawyer.location.toLowerCase().includes(query)
+          (lawyer.location && lawyer.location.toLowerCase().includes(query))
       );
     }
 
+    // Apply specialization filter
     if (specialization) {
       filtered = filtered.filter(
-        lawyer => lawyer.specialization.toLowerCase() === specialization.toLowerCase()
+        (lawyer) => lawyer.specialization.toLowerCase() === specialization.toLowerCase()
       );
     }
 
+    // Apply experience filter (parse string like '5 years' to number)
     if (experience) {
-      const [min, max] = experience.split('-').map(Number);
-      filtered = filtered.filter(lawyer => {
-        const years = parseInt(lawyer.experience);
-        return years >= min && (!max || years <= max);
+      const [min, max] = experience.split('-').map((num) => (num === 'plus' ? Infinity : parseInt(num)));
+      filtered = filtered.filter((lawyer) => {
+        const years = parseInt(lawyer.experience) || 0; // Extract numeric years from 'X years'
+        return years >= min && (!max || years <= max || (max === Infinity && years >= min));
       });
     }
 
+    // Apply location filter
+    if (location) {
+      filtered = filtered.filter(
+        (lawyer) => lawyer.location?.toLowerCase() === location.toLowerCase()
+      );
+    }
+
+    // Apply price range filter (using consultationFee)
     if (priceRange) {
-      const [min, max] = priceRange.split('-').map(Number);
-      filtered = filtered.filter(lawyer => {
-        return lawyer.hourlyRate >= min && (!max || lawyer.hourlyRate <= max);
+      const [min, max] = priceRange.split('-').map((num) => (num === 'plus' ? Infinity : parseInt(num)));
+      filtered = filtered.filter((lawyer) => {
+        const fee = parseInt(lawyer.consultationFee) || 0;
+        return fee >= min && (!max || fee <= max || (max === Infinity && fee >= min));
       });
     }
 
+    // Apply rating filter
     if (rating) {
-      filtered = filtered.filter(lawyer => lawyer.rating >= parseFloat(rating));
+      const [min, max] = rating.split('-').map((num) => (num === 'plus' ? 5 : parseFloat(num)));
+      filtered = filtered.filter((lawyer) => {
+        const rate = parseFloat(lawyer.rating) || 0;
+        return rate >= min && (!max || rate <= max || (max === 5 && rate >= min));
+      });
     }
 
     setFilteredLawyers(filtered);
@@ -109,12 +124,8 @@ const LawyerList = () => {
 
       {!loading && filteredLawyers.length === 0 && (
         <div className="text-center py-12">
-          <h3 className="text-xl font-semibold text-gray-600 mb-2">
-            No lawyers found
-          </h3>
-          <p className="text-gray-500">
-            Try adjusting your search criteria or filters
-          </p>
+          <h3 className="text-xl font-semibold text-gray-600 mb-2">No lawyers found</h3>
+          <p className="text-gray-500">Try adjusting your search criteria or filters</p>
         </div>
       )}
 

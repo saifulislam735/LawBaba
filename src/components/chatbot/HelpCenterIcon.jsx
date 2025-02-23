@@ -4,11 +4,11 @@ const HelpCenterIcon = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     const handleCall = () => {
-        window.location.href = "tel:+1234567890"
+        window.location.href = "tel:+8801609-812584"
     }
 
     const handleEmail = () => {
-        window.location.href = "mailto:support@example.com"
+        window.location.href = "mailto:ukilchambers@gmail.com"
     }
 
 

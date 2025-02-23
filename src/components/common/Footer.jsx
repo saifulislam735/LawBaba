@@ -67,7 +67,7 @@ const Footer = () => {
                   {t('support')}
                 </h3>
                 <ul className="mt-4 space-y-4">
-                  {[{ to: '/faq', text: t('faq') }, { to: '/contact', text: t('contact') }].map((item) => (
+                  {[{ to: '/faq', text: t('faq') }, { to: '/help', text: t('help') }, { to: '/contact', text: t('contact') }].map((item) => (
                     <li key={item.to}>
                       <Link to={item.to} className="group flex items-center text-gray-400 hover:text-blue-400 transition-colors duration-200">
                         <ChevronRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
