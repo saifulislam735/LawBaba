@@ -4,7 +4,7 @@ const LanguageContext = createContext(null);
 
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState('bn'); // Default language is Bangla
-  
+
   useEffect(() => {
     const storedLanguage = localStorage.getItem('language');
     if (storedLanguage) {

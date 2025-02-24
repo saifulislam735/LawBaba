@@ -65,7 +65,7 @@ const LawyerProfile = () => {
               to={`/lawyers/${id}/book`}
               className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-150"
             >
-              Book Consultation
+              Pay & Book Consultation
             </Link>
           </div>
         </div>
@@ -75,31 +75,28 @@ const LawyerProfile = () => {
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <div className="flex border-b">
           <button
-            className={`px-6 py-3 font-medium ${
-              activeTab === 'about'
-                ? 'border-b-2 border-blue-600 text-blue-600'
-                : 'text-gray-600 hover:text-gray-900'
-            }`}
+            className={`px-6 py-3 font-medium ${activeTab === 'about'
+              ? 'border-b-2 border-blue-600 text-blue-600'
+              : 'text-gray-600 hover:text-gray-900'
+              }`}
             onClick={() => setActiveTab('about')}
           >
             About
           </button>
           <button
-            className={`px-6 py-3 font-medium ${
-              activeTab === 'expertise'
-                ? 'border-b-2 border-blue-600 text-blue-600'
-                : 'text-gray-600 hover:text-gray-900'
-            }`}
+            className={`px-6 py-3 font-medium ${activeTab === 'expertise'
+              ? 'border-b-2 border-blue-600 text-blue-600'
+              : 'text-gray-600 hover:text-gray-900'
+              }`}
             onClick={() => setActiveTab('expertise')}
           >
             Expertise
           </button>
           <button
-            className={`px-6 py-3 font-medium ${
-              activeTab === 'availability'
-                ? 'border-b-2 border-blue-600 text-blue-600'
-                : 'text-gray-600 hover:text-gray-900'
-            }`}
+            className={`px-6 py-3 font-medium ${activeTab === 'availability'
+              ? 'border-b-2 border-blue-600 text-blue-600'
+              : 'text-gray-600 hover:text-gray-900'
+              }`}
             onClick={() => setActiveTab('availability')}
           >
             Availability
