@@ -1,27 +1,45 @@
-import { FileText } from "lucide-react"
+// components/dashboard/DocumentList.jsx
+import { FileText, Download } from 'lucide-react';
 
 const DocumentList = ({ documents }) => {
   return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-4">Recent Documents</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {documents.map((document) => (
-          <div
-            key={document.id}
-            className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition duration-300"
-          >
-            <div className="flex items-center mb-2">
-              <FileText className="w-6 h-6 text-blue-500 mr-2" />
-              <h3 className="font-semibold text-lg truncate">{document.name}</h3>
-            </div>
-            <p className="text-sm text-gray-600">Type: {document.type}</p>
-            <p className="text-sm text-gray-600">Uploaded: {document.dateUploaded}</p>
-          </div>
-        ))}
+    <div className="w-full">
+      <h2 className="text-xl font-semibold mb-4">Documents</h2>
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm text-left text-gray-500">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+              <th className="px-6 py-3">Title</th>
+              <th className="px-6 py-3">Uploaded By</th>
+              <th className="px-6 py-3">Date</th>
+              <th className="px-6 py-3">Type</th>
+              <th className="px-6 py-3">Size</th>
+              <th className="px-6 py-3">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {documents.map((doc) => (
+              <tr key={doc.id} className="bg-white border-b hover:bg-gray-50">
+                <td className="px-6 py-4 flex items-center">
+                  <FileText className="w-4 h-4 mr-2" />
+                  {doc.title}
+                </td>
+                <td className="px-6 py-4">{doc.uploadedBy}</td>
+                <td className="px-6 py-4">{new Date(doc.uploadDate).toLocaleDateString()}</td>
+                <td className="px-6 py-4">{doc.fileType}</td>
+                <td className="px-6 py-4">{doc.size}</td>
+                <td className="px-6 py-4">
+                  <a href={doc.url} download className="text-blue-600 hover:text-blue-800">
+                    <Download className="w-5 h-5" />
+                  </a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DocumentList
-
+export default DocumentList;

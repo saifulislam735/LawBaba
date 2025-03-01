@@ -9,6 +9,11 @@ const legalQuestions = [
         answer: "আপনাকে একটি সিভিল আইনজীবীর সাথে যোগাযোগ করতে হবে। বিস্তারিত সহায়তার জন্য, আমাদের আইনজীবী পৃষ্ঠায় যান, 'সিভিল আইনজীবী' বিভাগ অনুসন্ধান করুন, এবং তারপর আপনার আইনজীবী নির্বাচন করে পরামর্শ বুক করুন।"
     },
     {
+        question: "আমার চাচা সম্পত্তি থেকে আমাদের অনৈতিক উপায়ে আলাদা করে দিয়েছে। এখন আমরা কি করতে পারি?",
+        answer: "আপনাকে একটি সিভিল আইনজীবীর সাথে যোগাযোগ করতে হবে। বিস্তারিত সহায়তার জন্য, আমাদের আইনজীবী পৃষ্ঠায় যান, 'সিভিল আইনজীবী' বিভাগ অনুসন্ধান করুন, এবং তারপর আপনার আইনজীবী নির্বাচন করে পরামর্শ বুক করুন।"
+    }
+    ,
+    {
         question: "My landlord is trying to evict me unfairly. What should I do?",
         answer: "Please consult a Real Estate or Civil Lawyer. For further assistance, visit our lawyer page, search for the 'Real Estate' or 'Civil Lawyer' category, and then select your lawyer and book a consultation."
     },

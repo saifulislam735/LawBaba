@@ -7,23 +7,23 @@ const AuthContext = createContext(null);
 // Mock user data
 const mockUsers = {
   client: {
-    email: 'client@test.com',
-    password: 'client123',
+    email: 'anik@example.com',
+    password: 'anik123',
     role: 'client',
-    name: 'কামরুল ইসলাম',
-    lastName: 'খান',
+    name: 'অনিক',
+    lastName: 'ইসলাম',
     id: 'client1',
   },
   lawyer: {
     email: 'lawyer@test.com',
     password: 'lawyer123',
     role: 'lawyer',
-    firstName: 'মো. সোহেল',
-    lastName: 'রানা',
+    firstName: 'Joy',
+    lastName: 'Hasan',
     id: 'lawyer1',
-    specialization: 'ক্রিমিনাল আইন',
+    specialization: 'সিভিল আইন',
     barNumber: 'BAR123456',
-    experience: '12 বছর',
+    experience: '৭ বছর',
   },
 };
 

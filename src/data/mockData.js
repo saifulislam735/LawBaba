@@ -35,6 +35,42 @@ export const lawyers = [
     }
   },
   {
+    id: 16,
+    name: 'Joy Hasan',
+    specialization: 'Civil Law',
+    experience: '7 years',
+    rating: 4.8,
+    consultationFee: '750',
+    about: 'Expert in civil litigation, property disputes, and contract law. Dedicated to providing legal solutions with integrity.',
+    reviewCount: 135,
+    imageUrl: 'https://feniuniversity.ac.bd/public/storage/upload/facultyMembers/resize_356X390/240626040220-7195.jpeg',
+    consultationPay: 750,
+    availabilitybool: true,
+    location: 'Chattogram, Bangladesh',
+    languages: ['Bengali', 'English'],
+    description: 'Expert in civil litigation, property disputes, and contract law. Dedicated to providing legal solutions with integrity.',
+    cases: 180,
+    successRate: '88%',
+    education: [
+      'LL.B., University of Chittagong',
+      'LL.M., North South University'
+    ],
+    expertise: [
+      'Civil Litigation',
+      'Property Disputes',
+      'Contract Law',
+      'Inheritance Cases'
+    ],
+    availability: {
+      monday: '10:00 AM - 6:00 PM',
+      tuesday: '10:00 AM - 6:00 PM',
+      wednesday: '10:00 AM - 6:00 PM',
+      thursday: '10:00 AM - 6:00 PM',
+      friday: '10:00 AM - 4:00 PM'
+    }
+  }
+  ,
+  {
     id: 2,
     name: 'Sara Hossain',
     specialization: 'Human Rights Law',

@@ -73,12 +73,12 @@ const UserProfile = () => {
                 <div className="border rounded-lg p-4">
                   <div className="flex justify-between">
                     <div>
-                      <h3 className="font-medium">Sohel Rana</h3>
-                      <p className="text-sm text-gray-600">Criminal Law</p>
+                      <h3 className="font-medium">Joy Hasan</h3>
+                      <p className="text-sm text-gray-600">Civil Law</p>
                     </div>
                     <div className="text-right">
-                      <p className="font-medium">March 1, 2025</p>
-                      <p className="text-sm text-gray-600">10:00 AM</p>
+                      {/* <p className="font-medium">March 1, 2025</p> */}
+                      <p className="text-sm text-gray-600">9:00 pm</p>
                     </div>
                   </div>
                 </div>
