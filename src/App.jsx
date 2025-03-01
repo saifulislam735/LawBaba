@@ -25,6 +25,7 @@ import { NotificationProvider } from "./contexts/NotificationContext";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import './App.css';
+import Blog from "./pages/Blog";
 
 // Simple Layout component with Chatbot
 const Layout = ({ children }) => {
@@ -77,6 +78,7 @@ const App = () => {
               <Route path="/legal-resources" element={<Layout><LegalResources /></Layout>} />
               <Route path="/contact" element={<Layout><ContactPage /></Layout>} />
               <Route path="/faq" element={<Layout><FAQPage /></Layout>} />
+              <Route path="/blog" element={<Layout><Blog /></Layout>} />
 
               {/* Protected Routes */}
               <Route path="/profile" element={<ProtectedRoute><Layout><UserProfile /></Layout></ProtectedRoute>} />

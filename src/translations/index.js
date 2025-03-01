@@ -225,18 +225,26 @@ export const translations = {
     shuvoDas: "Shuvo Das",
     masumHossain: "Masum Hossain",
     raihanSarker: "Raihan Sarker",
-  
+
+    blog: "Blog",
+
+    english: "English",
+    bangla: "Bangla",
+    search: "Search",
+    all: "All",
+    criminal_law: "Criminal Law",
+    family_law: "Family Law",
+    property_law: "Property Law",
+    labor_law: "Labor Law",
+    business_law: "Business Law",
+    no_results_found: "No results found",
+
     // Language
     language: 'Language',
-    english: 'English',
-    bangla: 'বাংলা',
+
   },
   bn: {
-    loginAsLawyerLink: "আইনজীবী হিসেবে লগইন করুন",
-    shuvoDas: "শুভ দাশ",
-    masumHossain: "মাসুম হোসেন",
-    raihanSarker: "রাইহান সরকার",
-  
+
     // Navigation
     home: 'হোম',
     lawyers: 'আইনজীবী',
@@ -458,5 +466,19 @@ export const translations = {
     language: 'ভাষা',
     english: 'English',
     bangla: 'বাংলা',
+    blog: "ব্লগ",
+    search: "অনুসন্ধান",
+    all: "সব",
+    criminal_law: "ফৌজদারি আইন",
+    family_law: "পারিবারিক আইন",
+    property_law: "সম্পত্তি আইন",
+    labor_law: "শ্রম আইন",
+    business_law: "ব্যবসা আইন",
+    no_results_found: "কোন ফলাফল পাওয়া যায়নি",
+    loginAsLawyerLink: "আইনজীবী হিসেবে লগইন করুন",
+    shuvoDas: "শুভ দাশ",
+    masumHossain: "মাসুম হোসেন",
+    raihanSarker: "রাইহান সরকার",
+
   }
 };

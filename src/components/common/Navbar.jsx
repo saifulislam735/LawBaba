@@ -1,4 +1,3 @@
-
 import { useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { useAuth } from "../../contexts/AuthContext"
@@ -18,6 +17,7 @@ const Navbar = () => {
     { name: t("home"), path: "/" },
     { name: t("lawyers"), path: "/lawyers" },
     { name: t("resources"), path: "/legal-resources" },
+    { name: t("blog"), path: "/blog" }, // Added blog link
   ]
 
   const clientLinks = [
@@ -48,8 +48,8 @@ const Navbar = () => {
                 key={link.path}
                 to={link.path}
                 className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${isActive(link.path)
-                    ? "text-blue-600 bg-blue-50"
-                    : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                  ? "text-blue-600 bg-blue-50"
+                  : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
                   }`}
               >
                 {link.name}
@@ -80,8 +80,8 @@ const Navbar = () => {
                     key={link.path}
                     to={link.path}
                     className={`px-3 py-2 rounded-md text-sm font-medium transition-all ${isActive(link.path)
-                        ? "text-blue-600 bg-blue-50"
-                        : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                      ? "text-blue-600 bg-blue-50"
+                      : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
                       }`}
                   >
                     {link.name}
@@ -203,4 +203,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-
