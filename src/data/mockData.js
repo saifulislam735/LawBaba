@@ -62,11 +62,12 @@ export const lawyers = [
       'Inheritance Cases'
     ],
     availability: {
-      monday: '10:00 AM - 6:00 PM',
-      tuesday: '10:00 AM - 6:00 PM',
+      Saturday: '10:00 AM - 10:00 PM',
+      monday: '10:00 AM - 9:00 PM',
+      tuesday: '10:00 AM - 5:00 PM',
       wednesday: '10:00 AM - 6:00 PM',
-      thursday: '10:00 AM - 6:00 PM',
-      friday: '10:00 AM - 4:00 PM'
+      thursday: '10:00 AM - 7:00 PM',
+      friday: '10:00 AM - 10:00 PM'
     }
   }
   ,

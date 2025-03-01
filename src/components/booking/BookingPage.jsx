@@ -115,8 +115,8 @@ const BookingPage = () => {
                                                     key={slot}
                                                     onClick={() => handleSlotClick(day, slot)}
                                                     className={`px-3 py-2 rounded-md text-sm font-medium transition duration-150 ${selectedSlot?.day === day && selectedSlot?.time === slot
-                                                            ? 'bg-blue-600 text-white'
-                                                            : 'bg-gray-100 text-gray-700 hover:bg-blue-100 hover:text-blue-700'
+                                                        ? 'bg-blue-600 text-white'
+                                                        : 'bg-gray-100 text-gray-700 hover:bg-blue-100 hover:text-blue-700'
                                                         }`}
                                                     disabled={bookingConfirmed}
                                                 >
